@@ -35,7 +35,7 @@ public class CuentaController {
 		return cuenta != null ? ResponseEntity.ok(cuenta) : ResponseEntity.notFound().build();
 	}
 
-	@PostMapping
+	@PostMapping("/guardar")
 	public ResponseEntity<Cuenta> createCuenta(@RequestBody Cuenta cuenta) {
 		return new ResponseEntity<>(cuentaService.save(cuenta), HttpStatus.CREATED);
 	}

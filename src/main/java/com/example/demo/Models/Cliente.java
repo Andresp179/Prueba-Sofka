@@ -30,7 +30,7 @@ public class Cliente implements Serializable {
 	private String contraseña;
 	private boolean estado;
 
-	@Override
+	//@Override
 	public String toString() {
 		return "Cliente [clienteId=" + clienteId + ", persona=" + persona + ", contraseña=" + contraseña + ", estado="
 				+ estado + "]";

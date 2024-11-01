@@ -53,7 +53,7 @@ public class Cuenta implements Serializable {
 	public List<Movimientos> getMovimientos() {
 		return movimientos;
 	}
-
+	
 	public Long getId() {
 		return id;
 	}

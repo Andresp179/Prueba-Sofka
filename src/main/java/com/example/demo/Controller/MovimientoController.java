@@ -37,7 +37,7 @@ public class MovimientoController {
 		return movimiento != null ? ResponseEntity.ok(movimiento) : ResponseEntity.notFound().build();
 	}
 
-	@PostMapping
+	@PostMapping("/registrar")
 	public ResponseEntity<Movimientos> createMovimiento(@RequestBody Movimientos movimientos) {
 		return new ResponseEntity<>(movimientoService.save(movimientos), HttpStatus.CREATED);
 	}
@@ -61,7 +61,7 @@ public class MovimientoController {
 		return ResponseEntity.noContent().build();
 	}
 
-	  @PostMapping("/registrar")
+	  @PostMapping("/")
 	    public ResponseEntity<?> registrarMovimiento(
 	            @RequestParam Long cuentaId,
 	            @RequestParam String tipoMovimiento,

@@ -26,7 +26,7 @@ public class Persona implements Serializable {
 	private String direccion;
 	private String telefono;
 
-	@Override
+	//@Override
 	public String toString() {
 		return "Persona [id=" + id + ", nombre=" + nombre + ", genero=" + genero + ", edad=" + edad
 				+ ", identificacion=" + identificacion + ", direccion=" + direccion + ", telefono=" + telefono + "]";

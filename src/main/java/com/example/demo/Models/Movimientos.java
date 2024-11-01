@@ -44,6 +44,8 @@ public class Movimientos implements Serializable {
         this.fecha = LocalDateTime.now();
         this.cuenta = cuenta;
     }
+	
+	
 
 	//@Override
 	public String toString() {
@@ -104,5 +106,30 @@ public class Movimientos implements Serializable {
 	// Constructores
 	public Movimientos() {
 	}
+
+
+
+	public Cuenta getCuenta() {
+		return cuenta;
+	}
+
+
+
+	public void setCuenta(Cuenta cuenta) {
+		this.cuenta = cuenta;
+	}
+
+
+
+	public void setValor(double valor) {
+		this.valor = valor;
+	}
+
+
+
+	public void setSaldo(double saldo) {
+		this.saldo = saldo;
+	}
+	
 
 }

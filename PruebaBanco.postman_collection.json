@@ -1,0 +1,138 @@
+{
+	"info": {
+		"_postman_id": "5192ffc8-76c5-40d6-bedb-b4c0b05a0f3a",
+		"name": "PruebaBanco",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "39138297",
+		"_collection_link": "https://lively-rocket-213611.postman.co/workspace/New-Team-Workspace~2e46e393-8014-4a89-a3ef-9355f24ea66c/collection/39138297-5192ffc8-76c5-40d6-bedb-b4c0b05a0f3a?action=share&source=collection_link&creator=39138297"
+	},
+	"item": [
+		{
+			"name": "New Request",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"numeroCuenta\": \"1234567890\",\n  \"tipoCuenta\": \"Ahorro\",\n  \"saldoInicial\": 1000.50,\n  \"estado\": true\n}\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/cuentas/guardar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"cuentas",
+						"guardar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/personas/guardar",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"nombre\": \"Camilo Arango\",\n  \"genero\": \"Masculino\",\n  \"edad\": 30,\n  \"identificacion\": \"12345678\",\n  \"direccion\": \"Calle Falsa 123\",\n  \"telefono\": \"+123456789\",\n  \"activo\": true\n}\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/personas/guardar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"personas",
+						"guardar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/personas/obtener",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/personas/obtener",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"personas",
+						"obtener"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/personas/2",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/personas/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"personas",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "http://localhost:8080/movimientos/registrar",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"movimientoId\": 1,\n    \"fecha\": \"2024-11-01T10:30:00\",\n    \"tipoMovimiento\": \"Deposito\",\n    \"valor\": 500.00,\n    \"saldo\": 1500.00,\n    \"cuenta\": {\n        \"id\": 1,\n        \"numeroCuenta\": \"1234567890\",\n        \"tipoCuenta\": \"Ahorros\",\n        \"saldoInicial\": 1000.00,\n        \"estado\": true\n    }\n}\n\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/movimientos/registrar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movimientos",
+						"registrar"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

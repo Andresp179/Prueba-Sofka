@@ -1,5 +1,6 @@
 package com.example.demo.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,11 +33,15 @@ public class MovimientoService {
 	        Cuenta cuenta = cuentaRepository.findById(cuentaId)
 	                .orElseThrow(() -> new RuntimeException("Cuenta no encontrada"));
 
-	        // Registrar el movimiento y actualizar el saldo
-	        cuenta.registrarMovimiento(tipoMovimiento, valor);
-	        cuentaRepository.save(cuenta);
+	        Movimientos movimiento = new Movimientos();
+	        movimiento.setCuenta(cuenta); // Asignar el objeto Cuenta
+	        movimiento.setFecha(LocalDateTime.now());
+	        movimiento.setTipoMovimiento(tipoMovimiento);
+	        movimiento.setValor(valor);
+	        
+	        // Aquí puedes calcular y asignar el saldo si es necesario
+	        movimiento.setSaldo(cuenta.getSaldoInicial() + valor); // Por ejemplo
 
-	        // Obtener el último movimiento registrado para retornar
-	        return cuenta.getMovimientos().get(cuenta.getMovimientos().size() - 1);
+	        return movimientoRepository.save(movimiento); // Guardar el movimiento
 	    }
 }
