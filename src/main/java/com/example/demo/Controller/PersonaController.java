@@ -21,7 +21,7 @@ import com.example.demo.Service.PersonaService;
 @RequestMapping("/personas")
 public class PersonaController {
 	
-	 @Autowired
+	    @Autowired
 	    private PersonaService personaService; // Asegúrate de tener un servicio que maneje la lógica
 
 	    @PostMapping("/guardar")
