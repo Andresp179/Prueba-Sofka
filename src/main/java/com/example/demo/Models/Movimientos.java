@@ -36,8 +36,16 @@ public class Movimientos implements Serializable {
 	@ManyToOne
     @JoinColumn(name = "cuenta_id", nullable = false)
     private Cuenta cuenta;
+	
+	public Movimientos(String tipoMovimiento, double valor, double saldo, Cuenta cuenta) {
+        this.tipoMovimiento = tipoMovimiento;
+        this.valor = valor;
+        this.saldo = saldo;
+        this.fecha = LocalDateTime.now();
+        this.cuenta = cuenta;
+    }
 
-	@Override
+	//@Override
 	public String toString() {
 		return "Movimientos [movimientoId=" + movimientoId + ", fecha=" + fecha + ", tipoMovimiento=" + tipoMovimiento
 				+ ", valor=" + valor + ", saldo=" + saldo + "]";

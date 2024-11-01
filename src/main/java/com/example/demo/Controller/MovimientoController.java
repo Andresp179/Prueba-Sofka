@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.demo.Exceptions.SaldoInsuficienteException;
 import com.example.demo.Models.Movimientos;
 import com.example.demo.Service.MovimientoService;
 
@@ -60,12 +61,18 @@ public class MovimientoController {
 		return ResponseEntity.noContent().build();
 	}
 
-	@PostMapping("/registrar")
-	public ResponseEntity<Movimientos> registrarMovimiento(@RequestParam Long cuentaId,
-			@RequestParam String tipoMovimiento, @RequestParam double valor) {
-
-		Movimientos movimiento = movimientoService.registrarMovimiento(cuentaId, tipoMovimiento, valor);
-		return ResponseEntity.ok(movimiento);
-	}
+	  @PostMapping("/registrar")
+	    public ResponseEntity<?> registrarMovimiento(
+	            @RequestParam Long cuentaId,
+	            @RequestParam String tipoMovimiento,
+	            @RequestParam double valor) {
+	        try {
+	            Movimientos movimiento = movimientoService.registrarMovimiento(cuentaId, tipoMovimiento, valor);
+	            return ResponseEntity.ok(movimiento);
+	        } catch (SaldoInsuficienteException e) {
+	           
+	            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage()); // Captura de la excepción de saldo insuficiente
+	        }
+	    }
 
 }

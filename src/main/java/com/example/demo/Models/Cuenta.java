@@ -14,6 +14,8 @@ import lombok.Data;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.example.demo.Exceptions.SaldoInsuficienteException;
+
 @Data
 @Entity
 @Table(name = "cuenta")
@@ -31,10 +33,8 @@ public class Cuenta implements Serializable {
 	private double saldoInicial;
 	private boolean estado;
 
-	
-
-    @OneToMany(mappedBy = "cuenta", cascade = CascadeType.ALL)
-    private List<Movimientos> movimientos = new ArrayList<>();
+	@OneToMany(mappedBy = "cuenta", cascade = CascadeType.ALL)
+	private List<Movimientos> movimientos = new ArrayList<>();
 
 	public Cuenta() {
 		super();
@@ -93,18 +93,19 @@ public class Cuenta implements Serializable {
 	public void setEstado(boolean estado) {
 		this.estado = estado;
 	}
-	
-	 // Método para registrar un movimiento
-    public void registrarMovimiento(String tipoMovimiento, double valor) {
-        // Calcula el nuevo saldo
-        double nuevoSaldo = this.saldoInicial + valor;
-        
-        // Crea el movimiento y lo agrega a la lista
-        Movimientos movimiento = new Movimientos();
-        this.movimientos.add(movimiento);
 
-        // Actualiza el saldo de la cuenta
-        this.saldoInicial = nuevoSaldo;
-    }
+	// Método para registrar un movimiento
+	public void registrarMovimiento(String tipoMovimiento, double valor) {
+		// Verificar si el movimiento es un débito y si hay saldo suficiente
+		if (tipoMovimiento.equalsIgnoreCase("débito") && this.saldoInicial + valor < 0) {
+			throw new SaldoInsuficienteException("Saldo no disponible");
+		}
+
+		// Actualizar saldo y registrar movimiento
+		double nuevoSaldo = this.saldoInicial + valor;
+		Movimientos movimiento = new Movimientos(tipoMovimiento, valor, nuevoSaldo, this);
+		this.movimientos.add(movimiento);
+		this.saldoInicial = nuevoSaldo;
+	}
 
 }
