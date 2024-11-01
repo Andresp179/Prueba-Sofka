@@ -19,7 +19,7 @@ import com.example.demo.Models.Persona;
 import com.example.demo.Service.ClienteService;
 
 @RestController
-@RequestMapping
+@RequestMapping("/clientes")
 public class ClienteController {
 
 	@Autowired
@@ -77,4 +77,3 @@ public class ClienteController {
 	}
 
 }
-

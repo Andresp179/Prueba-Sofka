@@ -13,21 +13,20 @@ import lombok.Data;
 @Entity
 @Table(name = "persona")
 public class Persona implements Serializable {
-	
-	
+
 	private static final long serialVersionUID = 1L;
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
-    private String nombre;
-    private String genero;
-    private int edad;
-    private String identificacion;
-    private String direccion;
-    private String telefono;
-    
-    @Override
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	private Long id;
+
+	private String nombre;
+	private String genero;
+	private int edad;
+	private String identificacion;
+	private String direccion;
+	private String telefono;
+
+	@Override
 	public String toString() {
 		return "Persona [id=" + id + ", nombre=" + nombre + ", genero=" + genero + ", edad=" + edad
 				+ ", identificacion=" + identificacion + ", direccion=" + direccion + ", telefono=" + telefono + "]";
@@ -106,6 +105,7 @@ public class Persona implements Serializable {
 	}
 
 	// Constructores
-    public Persona() {}
+	public Persona() {
+	}
 
 }
