@@ -9,6 +9,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 
@@ -28,8 +30,12 @@ public class Movimientos implements Serializable {
 	@Column(length = 20)
 	private String tipoMovimiento;
 
-	private BigDecimal valor;
-	private BigDecimal saldo;
+	private double valor;
+	private double saldo;
+	
+	@ManyToOne
+    @JoinColumn(name = "cuenta_id", nullable = false)
+    private Cuenta cuenta;
 
 	@Override
 	public String toString() {
@@ -37,8 +43,8 @@ public class Movimientos implements Serializable {
 				+ ", valor=" + valor + ", saldo=" + saldo + "]";
 	}
 
-	public Movimientos(Long movimientoId, LocalDateTime fecha, String tipoMovimiento, BigDecimal valor,
-			BigDecimal saldo) {
+	public Movimientos(Long movimientoId, LocalDateTime fecha, String tipoMovimiento, Double valor,
+			Double saldo) {
 		super();
 		this.movimientoId = movimientoId;
 		this.fecha = fecha;
@@ -71,19 +77,19 @@ public class Movimientos implements Serializable {
 		this.tipoMovimiento = tipoMovimiento;
 	}
 
-	public BigDecimal getValor() {
+	public Double getValor() {
 		return valor;
 	}
 
-	public void setValor(BigDecimal valor) {
+	public void setValor(Double valor) {
 		this.valor = valor;
 	}
 
-	public BigDecimal getSaldo() {
+	public double getSaldo() {
 		return saldo;
 	}
 
-	public void setSaldo(BigDecimal saldo) {
+	public void setSaldo(Double saldo) {
 		this.saldo = saldo;
 	}
 

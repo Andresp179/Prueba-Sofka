@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.Models.Movimientos;
@@ -57,6 +58,14 @@ public class MovimientoController {
 	public ResponseEntity<Void> deleteMovimiento(@PathVariable Long id) {
 		movimientoService.deleteById(id);
 		return ResponseEntity.noContent().build();
+	}
+
+	@PostMapping("/registrar")
+	public ResponseEntity<Movimientos> registrarMovimiento(@RequestParam Long cuentaId,
+			@RequestParam String tipoMovimiento, @RequestParam double valor) {
+
+		Movimientos movimiento = movimientoService.registrarMovimiento(cuentaId, tipoMovimiento, valor);
+		return ResponseEntity.ok(movimiento);
 	}
 
 }

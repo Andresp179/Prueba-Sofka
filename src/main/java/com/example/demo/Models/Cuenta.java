@@ -2,13 +2,17 @@ package com.example.demo.Models;
 
 import java.io.Serializable;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.Data;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @Entity
@@ -27,6 +31,11 @@ public class Cuenta implements Serializable {
 	private double saldoInicial;
 	private boolean estado;
 
+	
+
+    @OneToMany(mappedBy = "cuenta", cascade = CascadeType.ALL)
+    private List<Movimientos> movimientos = new ArrayList<>();
+
 	public Cuenta() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -39,6 +48,10 @@ public class Cuenta implements Serializable {
 		this.tipoCuenta = tipoCuenta;
 		this.saldoInicial = saldoInicial;
 		this.estado = estado;
+	}
+
+	public List<Movimientos> getMovimientos() {
+		return movimientos;
 	}
 
 	public Long getId() {
@@ -80,5 +93,18 @@ public class Cuenta implements Serializable {
 	public void setEstado(boolean estado) {
 		this.estado = estado;
 	}
+	
+	 // Método para registrar un movimiento
+    public void registrarMovimiento(String tipoMovimiento, double valor) {
+        // Calcula el nuevo saldo
+        double nuevoSaldo = this.saldoInicial + valor;
+        
+        // Crea el movimiento y lo agrega a la lista
+        Movimientos movimiento = new Movimientos();
+        this.movimientos.add(movimiento);
+
+        // Actualiza el saldo de la cuenta
+        this.saldoInicial = nuevoSaldo;
+    }
 
 }
